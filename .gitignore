@@ -1,0 +1,30 @@
+# Gradle & Kotlin build caches
+.gradle/
+.kotlin/
+build/
+app/build/
+**/build/
+
+# Local SDK & secret environment configuration
+local.properties
+.env
+.env.*
+!.env.example
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Signed binaries & keystores
+*.apk
+*.aab
+*.ap_
+*.dex
+*.keystore
+*.jks
+
+# macOS
+.DS_Store

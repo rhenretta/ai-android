@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pixel Agent</string>
+    <string name="notification_listener_label">Pixel Agent Gatekeeper</string>
+    <string name="accessibility_service_label">Pixel Agent Chat Context Observer</string>
+    <string name="widget_label">Pixel Agent Voice &amp; Chat</string>
+    <string name="widget_description">1-tap synchronous voice chat and instant text composer with live Gatekeeper summary status.</string>
+    <string name="accessibility_service_description">Observes active conversation threads in messaging apps so your AI Gatekeeper knows which conversations you are actively participating in. Password fields are never read.</string>
+</resources>

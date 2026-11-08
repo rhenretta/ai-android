@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_bg">@android:color/system_neutral1_50</color>
+    <color name="widget_stroke">@android:color/system_neutral2_200</color>
+    <color name="widget_text_primary">@android:color/system_neutral1_900</color>
+    <color name="widget_text_secondary">@android:color/system_neutral2_600</color>
+    <color name="widget_btn_secondary_bg">@android:color/system_accent2_100</color>
+    <color name="widget_btn_secondary_fg">@android:color/system_accent2_900</color>
+    <color name="widget_btn_primary_bg">@android:color/system_accent1_600</color>
+    <color name="widget_btn_primary_fg">@android:color/system_accent1_0</color>
+    <color name="widget_btn_end_bg">#FFE11D48</color>
+    <color name="widget_btn_end_fg">#FFFFFFFF</color>
+    <color name="widget_dot_active">#FF10B981</color>
+    <color name="widget_dot_paused">#FFF59E0B</color>
+    <color name="splash_bg">@android:color/system_neutral1_50</color>
+</resources>

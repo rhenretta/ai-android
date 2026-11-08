@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Network & Background Reliability -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Notifications & Do Not Disturb / Modes Policy -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <!-- Synchronous Bidirectional Voice Foreground Service -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
+    <!-- Deep Communication & Relationship Context (Provisioned via ADB / Runtime) -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
+    <!-- Allow package visibility so PackageManager can resolve human-readable app names -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".PixelAgentApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PixelAgent">
+
+        <!-- Single-Canvas Conversational Workspace -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Translucent Floating Synchronous Voice Sheet (Android 14+ Widget Mic Bridge) -->
+        <activity
+            android:name=".ui.VoiceOverlayActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity=""
+            android:theme="@style/Theme.PixelAgent.TranslucentSheet" />
+
+        <!-- Zen Mode Configuration Link -->
+        <activity-alias
+            android:name=".ZenRuleConfigAlias"
+            android:exported="true"
+            android:targetActivity=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.app.action.AUTOMATIC_ZEN_RULE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- Pre-Alert Notification Interceptor & Engagement Tracker -->
+        <service
+            android:name=".gatekeeper.GatekeeperNotificationListener"
+            android:exported="true"
+            android:label="@string/notification_listener_label"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- Passive 3rd-Party Active Chat Thread Observer (WhatsApp, Slack, Signal, etc.) -->
+        <service
+            android:name=".context.ActiveScreenContextService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- Synchronous Gemini Live Voice Foreground Service -->
+        <service
+            android:name=".voice.LiveVoiceForegroundService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <!-- Notification & Digest Quick Actions Receiver -->
+        <receiver
+            android:name=".gatekeeper.NotificationActionReceiver"
+            android:exported="false" />
+
+        <!-- Zero-Paste Mac-to-Pixel ADB Keystore Provisioning Receiver -->
+        <receiver
+            android:name=".data.settings.AdbKeyProvisionReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.personal.pixelagent.PROVISION_API_KEY" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 4x1 Home Screen Synchronous Voice + Type Pill Widget -->
+        <receiver
+            android:name=".widget.AgentVoiceWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.personal.pixelagent.ACTION_WIDGET_REFRESH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/agent_voice_widget_info" />
+        </receiver>
+
+    </application>
+</manifest>
